@@ -38,9 +38,12 @@ function getApiKeyAndToken() {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
         openTokSessionInfo = JSON.parse(xhr.responseText);
-        apiKey = openTokSessionInfo.apiKey;
-        sessionId = openTokSessionInfo.sessionId;
-        token = openTokSessionInfo.token;
+        //apiKey = openTokSessionInfo.apiKey;
+        apiKey = "45942392";
+        //sessionId = openTokSessionInfo.sessionId;
+        sessionId = "1_MX40NTk0MjM5Mn5-MTUwMzIzODQwMzIwOX5zMDQxRTVUL09JMXRIcUxNdHc1dDQ5SXh-UH4";
+        //token = openTokSessionInfo.token;
+        token = "T1==cGFydG5lcl9pZD00NTk0MjM5MiZzaWc9ZTgyOWI1Y2QyZTRjYWNkNGFiYzNhMjk0MGY1MDAzZTNkYzEwMWMzMjpzZXNzaW9uX2lkPTFfTVg0ME5UazBNak01TW41LU1UVXdNekl6T0RRd016SXdPWDV6TURReFJUVlVMMDlKTVhSSWNVeE5kSGMxZERRNVNYaC1VSDQmY3JlYXRlX3RpbWU9MTUwMzIzODU4NiZub25jZT0wLjY5NTY0Mzc1ODY5NTgxNDQmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTUwMzg0MzM3NiZjb25uZWN0aW9uX2RhdGE9ZGVtbyZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==";
         initSession();
       } else {
         console.error(xhr.statusText);
