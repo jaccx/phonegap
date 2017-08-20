@@ -1,34 +1,46 @@
-// Ionic Starter App
+// replace these values with those generated in your TokBox Account
+var apiKey = "45942392";
+var sessionId = "1_MX40NTk0MjM5Mn5-MTUwMzIzNDE3OTEzMX56OUE4clNEYXEydTRzUHRuM2dKK0dXNlN-UH4";
+var token = "T1==cGFydG5lcl9pZD00NTk0MjM5MiZzaWc9OGNmMTI5YTI5N2QyMjc5NTVlZmY4YjZjNjY4YzcwMTNkNTRhMmNiZjpzZXNzaW9uX2lkPTFfTVg0ME5UazBNak01TW41LU1UVXdNekl6TkRFM09URXpNWDU2T1VFNGNsTkVZWEV5ZFRSelVIUnVNMmRLSzBkWE5sTi1VSDQmY3JlYXRlX3RpbWU9MTUwMzIzNDI4MiZub25jZT0wLjk3NDMwODkxOTY4Nzg5NTEmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTUwMzIzNzg3NSZjb25uZWN0aW9uX2RhdGE9cHJ1ZWJhcyZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==";
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'LocalStorageModule'])
+// Handling all of our errors here by alerting them
+function handleError(error) {
+  if (error) {
+    alert(error.message);
+  }
+}
 
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if(window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if(window.StatusBar) {
-      StatusBar.styleDefault();
+// (optional) add server code here
+initializeSession();
+
+function initializeSession() {
+  var session = OT.initSession(apiKey, sessionId);
+
+  // Subscribe to a newly created stream
+  session.on('streamCreated', function(event) {
+    console.log("Subscribe to a newly created stream");
+    session.subscribe(event.stream, 'subscriber', {
+      insertMode: 'append',
+      width: '100%',
+      height: '100%'
+    }, handleError);
+  });
+
+  // Create a publisher
+  var publisher = OT.initPublisher('publisher', {
+    insertMode: 'append',
+    width: '100%',
+    height: '100%'
+  }, handleError);
+
+  // Connect to the session
+  session.connect(token, function(error) {
+    // If the connection is successful, initialize a publisher and publish to the session
+    if (error) {
+      handleError(error);
+    } else {
+        console.log("Connect to the session");
+      session.publish(publisher, handleError);
     }
   });
-})
-
-.config(function ($stateProvider, $urlRouterProvider) {
-  $stateProvider
-    .state('login', {
-      url: '/login',
-      templateUrl: 'templates/index.html'
-    })
-
-    .state('app', {
-      url: '/app',
-      templateUrl: 'templates/videocall.html'
-    });
-
-    $urlRouterProvider.otherwise('/login');
-});
+}
