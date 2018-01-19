@@ -15,7 +15,7 @@
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="3000"/>
-  <preference name="phonegap-version" value="cli-6.5.0" /> 
+  <preference name="phonegap-version" value="cli-7.1.0" />
   <!-- Support for Cordova 5.0.0 plugin system -->
   <!-- <plugin name="cordova-plugin-whitelist" version="1" /> -->
   <allow-intent href="http://*/*" />
