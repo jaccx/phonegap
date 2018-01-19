@@ -17,7 +17,7 @@
   <preference name="SplashScreenDelay" value="3000"/>
   <preference name="phonegap-version" value="cli-6.5.0" /> 
   <!-- Support for Cordova 5.0.0 plugin system -->
-  <plugin name="cordova-plugin-whitelist" version="1" />
+  <plugin name="cordova-plugin-whitelist" version="2" />
   <allow-intent href="http://*/*" />
   <allow-intent href="https://*/*" />
   <allow-intent href="tel:*" />
